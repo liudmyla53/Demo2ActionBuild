@@ -5,8 +5,15 @@
 ```yml
 # Installation des Node
 npm i
+# Tester le code
 npm run test
-npm start
+
+# Build le projet TS → JS
+npm run build
+
+# Lancer le projet buildé
+npm run start
+```
 
 
 ## Mise en place d'un action CI/CD
