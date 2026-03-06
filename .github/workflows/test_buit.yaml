@@ -22,6 +22,19 @@ jobs:
       - name: Lancement des tests unitaires
         run: npm run test 
 
+      - name: Maillage en cas de foirage de testage
+        if: failure()
+        uses: ksatriow/action-mailer@v1.0.0
+        with:
+          smtp-server: ${{ vars.SMTP_SERVER}}
+          smtp-port: ${{ vars.SMTP_PORT}}
+          from-email: ${{ secrets.FROM_EMAIL }}
+          to-email: digitalcity@yopmail.com
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "Deployment fail!"
+          html-template: "<h1>Et merde! Ca a foiré !<h1>" 
+
       - name: Buildation du code TS vers le JS
         run: npm run build
 
